@@ -12,12 +12,11 @@ header {
     float: right;
 }
 
-.content {
-
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-}
+/*.content {*/
+/*    text-align: center;*/
+/*    margin-left: auto;*/
+/*    margin-right: auto;*/
+/*}*/
 
 @keyframes slidein {
     from {
@@ -31,17 +30,21 @@ header {
     }
 }
 
+.textCenter {
+    text-align: center
+}
+
 .center {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
+    text-align: center;
+    left: 50%;
+    right: 50%;
 }
 
 body {
     animation-duration: 2s;
     animation-name: slidein;
-    overflow-x: hidden; /* Hide horizontal scrollbar */
+    /*overflow-x: hidden; !* Hide horizontal scrollbar *!*/
 
     font-family: "Courier New", monospace;
     color: white;
@@ -52,30 +55,31 @@ body {
     text-align: center;
 }
 
-.rButton {
-    background-color: white;
-    border: black;
-    color: #0076ff;
-    padding: 10px 24px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    border-radius: 12px;
-}
+/*.rButton {*/
+/*    background-color: white;*/
+/*    border: black;*/
+/*    color: #0076ff;*/
+/*    padding: 10px 24px;*/
+/*    text-align: center;*/
+/*    text-decoration: none;*/
+/*    display: inline-block;*/
+/*    font-size: 16px;*/
+/*    border-radius: 12px;*/
+/*}*/
 
-.rButton:active {
-    background-color: #32CD32;
-    transform: translateY(4px);
+/*.rButton:active {*/
+/*    background-color: #32CD32;*/
+/*    transform: translateY(4px);*/
 
-}
+/*}*/
 
-footer {
-    text-align: center;
-    background: #9c4dcc;
-}
+/*footer {*/
+/*    text-align: center;*/
+/*    background: #9c4dcc;*/
+/*}*/
 
-table {
+
+#result-table {
     border-color: #9c4dcc;
     border-spacing: 5px;
     text-align: center;
@@ -86,9 +90,6 @@ table {
 }
 
 
-img {
-    transform: rotate(90deg);
-}
-line{
+line {
     stroke: black;
 }

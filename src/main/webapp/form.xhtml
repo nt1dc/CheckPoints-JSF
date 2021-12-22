@@ -13,10 +13,12 @@
     <h:form id="formID">
         <div class="x-value">
             <p>Выберите X:</p>
-            <h:panelGrid columns="1" style="margin-bottom: 10px">
-                <p:inputText id="x" value="#{resultsBean.x}" maxlength="6"
+            <label>[-4:4]</label>
+            <br/>
+            <h:panelGrid columns="1" style="margin: auto">
+                <p:inputText style="text-align: center" id="x" value="#{resultsBean.x}" maxlength="6"
                              validatorMessage="X must be number between -4 and 4 inclusive"
-                             required="true" requiredMessage="X is required">
+                             required="true" requiredMessage="X is required" >
                     <f:validateDoubleRange minimum="-4" maximum="4"/>
                     <f:ajax execute="formID" render="x-error"/>
                     <!--                    <p:ajax update="area"/>-->
@@ -33,10 +35,12 @@
 
         <div class="y-value">
             <p>Выберите Y:</p>
+            <label>[-5:5]</label>
+            <br/>
             <h:inputText id="y" name="y" value="#{resultsBean.y}" label="Value in [-5..5]"
                          converterMessage="Y must be number..."
                          validatorMessage="Y must be number between -5 and 5 inclusive"
-                         required="true" requiredMessage="Y is required" maxlength="6">
+                         required="true" requiredMessage="Y is required" maxlength="6" style="text-align: center">
                 <f:validateDoubleRange minimum="-5" maximum="5"/>
                 <f:ajax execute="formID" render="y-error"/>
                 <!--                <p:ajax update="area"/>-->
@@ -47,8 +51,10 @@
 
         <div class="r-value">
             <p>Выберите R:</p>
-            <h:panelGrid columns="1" style="margin-bottom: 10px">
-                <p:inputText id="r" value="#{resultsBean.r}" disabled="false" maxlength="4">
+            <label>[-4:4]</label>
+            <br/>
+            <h:panelGrid columns="1" style="margin-bottom: 10px;margin: auto">
+                <p:inputText id="r" value="#{resultsBean.r}" disabled="false" maxlength="4" style="text-align: center">
                     <f:validateDoubleRange minimum="2" maximum="5"/>
                     <f:validator validatorId="BestValid"/>
                     <f:ajax execute="@form" render="r-error" update="area"/>

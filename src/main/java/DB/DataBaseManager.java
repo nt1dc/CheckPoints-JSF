@@ -6,8 +6,6 @@ import org.hibernate.Session;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.LinkedList;
-import java.util.List;
 
 public abstract class DataBaseManager {
     private static Deque<Result> resultList;

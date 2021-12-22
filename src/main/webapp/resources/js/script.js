@@ -3,8 +3,8 @@ function sub(event) {
     let rowX = event.offsetX
     let rowY = event.offsetY
     R = getR();
-    x.value = (((300 / 2 - rowX) * -R) / 120 - 0.7).toFixed(2);
-    y.value =(((R / 60) * (300 / 2 - rowY)) / 2 + 0.7).toFixed(2);
+    x.value = (R*(rowX-150)/120).toFixed(2);
+    y.value =((150-rowY)*R/120).toFixed(2);
     console.log("was clicked")
     document.getElementById("formID:sumbitter").click();
     // alert("2")

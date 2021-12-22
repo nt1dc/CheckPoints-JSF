@@ -1,23 +1,12 @@
 package Model;
-
-
 import DB.DataBaseManager;
-import DB.HibernateSessionFactoryUtil;
 import Haliki.BestValidatorEver;
-import Servlets.Utils;
 import lombok.Data;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 
-import javax.faces.bean.ApplicationScoped;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.faces.component.FacesComponent;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
 import java.util.ArrayDeque;
-import java.util.Date;
 import java.util.Deque;
 
 //@ManagedBean(name = "resultsBean", eager = true)
