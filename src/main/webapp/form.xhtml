@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+<h:head>
+
+</h:head>
+<h:body>
+    <h:form id="formID">
+        <div class="x-value">
+            <p>Выберите X:</p>
+            <h:panelGrid columns="1" style="margin-bottom: 10px">
+                <p:inputText id="x" value="#{resultsBean.x}" maxlength="6"
+                             validatorMessage="X must be number between -4 and 4 inclusive"
+                             required="true" requiredMessage="X is required">
+                    <f:validateDoubleRange minimum="-4" maximum="4"/>
+                    <f:ajax execute="formID" render="x-error"/>
+                    <!--                    <p:ajax update="area"/>-->
+                </p:inputText>
+                <p:slider for="x" minValue="-4" maxValue="4" step="0.25">
+                    <p:ajax event="slideEnd" process="x" update="x-error"/>
+                    <!--                    <p:ajax event="slideEnd" process="x" update="area x-error"/>-->
+                    <!--                    <f:ajax execute="@form" render="x-error"/>-->
+                    <!--                     render="pointer x-error"-->
+                </p:slider>
+            </h:panelGrid>
+            <h:message id="x-error" for="x" style="color: red"/>
+        </div>
+
+        <div class="y-value">
+            <p>Выберите Y:</p>
+            <h:inputText id="y" name="y" value="#{resultsBean.y}" label="Value in [-5..5]"
+                         converterMessage="Y must be number..."
+                         validatorMessage="Y must be number between -5 and 5 inclusive"
+                         required="true" requiredMessage="Y is required" maxlength="6">
+                <f:validateDoubleRange minimum="-5" maximum="5"/>
+                <f:ajax execute="formID" render="y-error"/>
+                <!--                <p:ajax update="area"/>-->
+            </h:inputText>
+            <br/>
+            <h:message id="y-error" for="y" style="color: red"/>
+        </div>
+
+        <div class="r-value">
+            <p>Выберите R:</p>
+            <h:panelGrid columns="1" style="margin-bottom: 10px">
+                <p:inputText id="r" value="#{resultsBean.r}" disabled="false" maxlength="4">
+                    <f:validateDoubleRange minimum="2" maximum="5"/>
+                    <f:validator validatorId="BestValid"/>
+                    <f:ajax execute="@form" render="r-error" update="area"/>
+                </p:inputText>
+                <p:slider for="r" minValue="2" maxValue="5" step="0.25">
+                    <p:ajax event="slideEnd" process="r" update="area r-error"/>
+                </p:slider>
+            </h:panelGrid>
+            <h:message id="r-error" for="r" style="color: red"/>
+        </div>
+
+        <div>
+            <h:commandButton id="sumbitter" type="submit" value="Submit" action="#{resultsBean.add}"
+                             style="background: darkcyan">
+                <p:ajax execute="formID" update="result-table area"/>
+                <!--                execute="formID"-->
+                <!--                                <p:ajax update="area"/>-->
+            </h:commandButton>
+            <h:commandButton id="clearer" type="submit" value="Clear" action="#{resultsBean.clear}">
+                <f:ajax execute="clearer" render="formID result-table area"/>
+                <!--                execute="clearer"-->
+                <!--                <p:ajax update="area"/>-->
+                <!--                <f:ajax render="svgField" onevent="clear()"/>-->
+            </h:commandButton>
+        </div>
+    </h:form>
+</h:body>
+</html>

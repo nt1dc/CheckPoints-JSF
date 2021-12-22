@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+<div style="height: 35%; overflow: auto; width: 35%; background: #3c6a79">
+
+    <h:dataTable id="result-table" value="#{resultsBean.resultDeque}" var="result">
+        <h:column>
+            <f:facet name="header">X</f:facet>
+            ${result.x}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">Y</f:facet>
+            ${result.y}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">R</f:facet>
+            ${result.r}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">Result</f:facet>
+            ${result.resultStatus ? "Yes" : "No"}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">Current Time</f:facet>
+            ${result.simpleCurrentTime}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">Runtime</f:facet>
+            ${result.resultTime} ns
+        </h:column>
+
+    </h:dataTable>
+</div>
+</html>

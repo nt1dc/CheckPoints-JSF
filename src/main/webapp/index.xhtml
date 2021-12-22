@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: 1
+  Date: 12/18/2021
+  Time: 3:58 PM
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+>
+<h:head>
+    <link rel="icon" type="image/png" href="resources/media/fly.jpg"/>
+    <h:outputStylesheet library="css" name="clock.css"/>
+    <title>ZAEBALO</title>
+</h:head>
+
+<h:body>
+    <div id="clock">
+        <h2 class="glow" style="float: left; margin-left: 2%;margin-top: 2%">Антонов Дмитрий Владимирович</h2>
+        <h2 class="glow" style="float: right; margin-right: 2%;argin-top: 2%">Вариант 15101</h2>
+        <br/>
+        <div id="time" class="glow"></div>
+        <div id="date">
+            <span class="month"/>
+            <span class="day"/>,
+            <span class="year"/>
+        </div>
+        <h:form>
+            <h:commandButton action="#{navigationController.processApp}" value="app"/>
+        </h:form>
+    </div>
+
+    <div class="container">
+        <ul id="days">
+            <li class="monday">Понедельник</li>
+            <li class="tuesday">Вторник</li>
+            <li class="wednesday">Среда</li>
+            <li class="thursday">Четверг</li>
+            <li class="friday">Пятница</li>
+            <li class="saturday">Суббота</li>
+            <li class="sunday">Воскресенье</li>
+        </ul>
+    </div>
+</h:body>
+<h:outputScript library="js" name="clock.js"/>
+<!--урадено(повзаимствованно(адаптированно(взято из общего доступа))) с https://prowebmastering.ru/clock-js.html -->
+</html>

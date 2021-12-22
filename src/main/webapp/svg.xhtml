@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:view>
+    <composite:interface>
+    </composite:interface>
+    <composite:implementation>
+        <div jsf:id="area" style="display: inline-block" onclick="sub(event)">
+            <svg xmlns="http://www.w3.org/2000/svg" style="height: 300px;width: 300px" id="svgField">
+                <polygon fill="#0076ff" fill-opacity="1" points="150,150 90,150 150,30"/>
+                <rect fill="#0076ff" fill-opacity="1" x="150" y="30" height="120" width="60"/>
+                <g transform="translate(150,150)">
+                    <path d="M0 0 60 0 A60 55 0 0 1 0 60" fill="#0076ff"/>
+                </g>
+                <line stroke="black" x1="0" x2="300" y1="150" y2="150"/>
+                <line stroke="black" x1="150" x2="150" y1="0" y2="300"/>
+
+                <text x="275" y="143">R</text>
+                <line stroke="black" x1="273" x2="273" y1="148" y2="152"/>
+
+                <text x="215" y="143">R/2</text>
+                <line stroke="black" x1="210" x2="210" y1="148" y2="152"/>
+
+                <text x="90" y="143">-R/2</text>
+                <line stroke="black" x1="90" x2="90" y1="148" y2="152"/>
+
+                <text x="30" y="143">-R</text>
+                <line x1="30" x2="30" y1="148" y2="152"/>
+
+                <text x="150" y="26">R</text>
+                <line stroke="black" x1="148" x2="152" y1="30" y2="30"/>
+
+                <text x="150" y="86">R/2</text>
+                <line stroke="black" x1="148" x2="152" y1="90" y2="90"/>
+
+                <text x="155" y="215">-R/2</text>
+                <line stroke="black" x1="147" x2="153" y1="210" y2="210"/>
+
+                <text x="150" y="280">-R</text>
+                <line x1="148" x2="152" y1="270" y2="270"/>
+                <circle r="2" stroke="black" cx="150" cy="150"/>
+                <polygon fill="black" points="300,150 295,145 295,155" stroke="black"/>
+                <polygon fill="black" points="150,0 145,5 155,5" stroke="black"/>
+
+
+                <g jsfc="ui:repeat" value="#{resultsBean.resultDeque}" var="result" id="points">
+                    <circle r="5" cx="#{(result.x * 2) / resultsBean.lastR * 60.0 + 150.0}"
+                            cy="#{(150.0 - (result.y * 2) / resultsBean.lastR * 60.0)}"
+                            fill="#{result.getColor(resultsBean.lastR)}"/>
+                </g>
+
+            </svg>
+        </div>
+    </composite:implementation>
+</f:view>
+
+</html>
