@@ -1,7 +1,6 @@
-package Servlets;
+package Util;
 
 public class Utils {
-
 
     public static boolean atArea(double x, double y, double r) {
         return atQuarterCircle(x, y, r) || atRectangle(x, y, r) || atTriangle(x, y, r);

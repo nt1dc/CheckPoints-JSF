@@ -12,6 +12,7 @@ public class HibernateSessionFactoryUtil {
     }
 
     public static SessionFactory getSessionFactory() {
+
         if (sessionFactory == null) {
             try {
                 Configuration configuration = new Configuration().configure();
@@ -20,7 +21,8 @@ public class HibernateSessionFactoryUtil {
                 sessionFactory = configuration.buildSessionFactory(builder.build());
 
             } catch (Exception e) {
-                System.out.println("Исключение!" + e);
+                System.out.println("Connection DB exception");
+                System.exit(0);
             }
         }
         return sessionFactory;

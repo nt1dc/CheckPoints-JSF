@@ -1,7 +1,6 @@
 package Model;
 
-import Servlets.Utils;
-import javafx.application.Application;
+import Util.Utils;
 
 import javax.persistence.*;
 import java.io.Serializable;

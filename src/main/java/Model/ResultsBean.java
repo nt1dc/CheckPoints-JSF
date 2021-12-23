@@ -1,6 +1,7 @@
 package Model;
+
 import DB.DataBaseManager;
-import Haliki.BestValidatorEver;
+import Validators.BestValidatorEver;
 import lombok.Data;
 
 import javax.faces.context.FacesContext;
@@ -35,7 +36,8 @@ public class ResultsBean implements Serializable {
     }
 
     public void setR(double r) {
-        this.lastR = r;
+        lastR = r;
+        System.out.println("last r" + "= " + lastR);
         this.r = r;
     }
 
@@ -44,9 +46,15 @@ public class ResultsBean implements Serializable {
         resultDeque = DataBaseManager.loadData();
     }
 
+//
+//    public void reload(){
+//        resultDeque = new ArrayDeque<>();
+//        resultDeque=DataBaseManager.loadData();
+//    }
+
     public void add() {
         try {
-
+//            reload();
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         x = Double.parseDouble(request.getParameter("formID:x"));
         y = Double.parseDouble(request.getParameter("formID:y"));
@@ -58,9 +66,15 @@ public class ResultsBean implements Serializable {
             DataBaseManager.save(result);
             resultDeque.addFirst(result);
             System.out.println(resultDeque.size());
+        } else{
+            System.out.println("bad req");
+//            FacesMessage msg = new FacesMessage("Bad req");
+//            msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+//            throw new ValidatorException(msg);
         }}catch (Exception e){
-
+            System.out.println("sth go wrong");
         }
+
     }
 
     public void clear() {

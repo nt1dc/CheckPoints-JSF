@@ -1,4 +1,4 @@
-package Servlets;
+package Util;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;

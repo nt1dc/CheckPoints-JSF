@@ -4,8 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:jsf="http://xmlns.jcp.org/jsf">
+      xmlns:p="http://primefaces.org/ui">
 <h:head>
 
 </h:head>
@@ -18,7 +17,7 @@
             <h:panelGrid columns="1" style="margin: auto">
                 <p:inputText style="text-align: center" id="x" value="#{resultsBean.x}" maxlength="6"
                              validatorMessage="X must be number between -4 and 4 inclusive"
-                             required="true" requiredMessage="X is required" >
+                             required="true" requiredMessage="X is required">
                     <f:validateDoubleRange minimum="-4" maximum="4"/>
                     <f:ajax execute="formID" render="x-error"/>
                     <!--                    <p:ajax update="area"/>-->
@@ -51,13 +50,15 @@
 
         <div class="r-value">
             <p>Выберите R:</p>
-            <label>[-4:4]</label>
+            <label>[2:5] с шагом 0.25</label>
             <br/>
-            <h:panelGrid columns="1" style="margin-bottom: 10px;margin: auto">
+            <h:panelGrid columns="1" style="margin: auto">
                 <p:inputText id="r" value="#{resultsBean.r}" disabled="false" maxlength="4" style="text-align: center">
                     <f:validateDoubleRange minimum="2" maximum="5"/>
                     <f:validator validatorId="BestValid"/>
-                    <f:ajax execute="@form" render="r-error" update="area"/>
+                    <p:ajax execute="formID" update="area r-error"/>
+                    <!--                    render="r-error"-->
+                    <!--                    execute="@form"-->
                 </p:inputText>
                 <p:slider for="r" minValue="2" maxValue="5" step="0.25">
                     <p:ajax event="slideEnd" process="r" update="area r-error"/>
@@ -68,13 +69,16 @@
 
         <div>
             <h:commandButton id="sumbitter" type="submit" value="Submit" action="#{resultsBean.add}"
-                             style="background: darkcyan">
-                <p:ajax execute="formID" update="result-table area"/>
+                             style="background: darkcyan" >
+<!--                <f:validator validatorId="SubValidator"/>-->
+                <p:ajax execute="formID" update="result-table area x-error y-error r-error"/>
                 <!--                execute="formID"-->
+<!--                sub-error-->
                 <!--                                <p:ajax update="area"/>-->
             </h:commandButton>
+            <h:message id="sub-error" for="sumbitter" style="color: red"/>
             <h:commandButton id="clearer" type="submit" value="Clear" action="#{resultsBean.clear}">
-                <f:ajax execute="clearer" render="formID result-table area"/>
+                <f:ajax execute="clearer" render="formID result-table area "/>
                 <!--                execute="clearer"-->
                 <!--                <p:ajax update="area"/>-->
                 <!--                <f:ajax render="svgField" onevent="clear()"/>-->
