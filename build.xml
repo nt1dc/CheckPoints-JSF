@@ -14,7 +14,7 @@
     </path>
     <target name="compile">
         <mkdir dir="${buildDir}/classes"/>
-        <javac destdir="${buildDir}/classes" includeantruntime="false">
+        <javac target="${targetVersion}" destdir="${buildDir}/classes" includeantruntime="false">
             <exclude name="${srcTest}/java/*"/>
             <exclude name="**/*Test.java"/>
             <classpath refid="master-classpath"/>
