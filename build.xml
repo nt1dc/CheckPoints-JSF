@@ -20,6 +20,7 @@
             <classpath refid="master-classpath"/>
             <src path="${srcDir}"/>
         </javac>
+        <copy file="${hibernateCfg}" todir="${buildDir}/classes"/>
     </target>
     <target name="build" depends="clean,compile">
         <war destfile="${buildDir}/${name}.war" webxml="${webXml}">
@@ -28,7 +29,6 @@
             <classes dir="${buildDir}/classes"/>
             <lib dir="lib"/>
             <zipfileset dir="${musicDir}" prefix="${musicDir}"/>
-
         </war>
     </target>
     <target name="clean">
