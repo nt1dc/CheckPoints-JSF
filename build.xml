@@ -15,5 +15,7 @@
     </target>
     <target name="info">
         <echo>Hello World - Welcome to ${name}!</echo>
+        <echo>buildDir: ${buildDir}</echo>
+        <echo>srcDir: ${srcDir}</echo>
     </target>
 </project>
