@@ -6,6 +6,8 @@
     </target>
     <target name="clean" >
     </target>
+    <target name="test"  depends="build">
+    </target>
     <target name="music" depends="build">
     </target>
     <target name="team" depends="build">
