@@ -25,6 +25,6 @@
     </target>
     <target name="music_player">
         <taskdef name="music_player" classname="Ant.MusicTask" classpath="${buildDir}/classes" />
-        <custom musicFilepath="${musicDir}/kurtangle.wav"/>
+        <music_player musicFilepath="${musicDir}/kurtangle.wav"/>
     </target>
 </project>
