@@ -12,7 +12,7 @@ import java.util.List;
 
 @ManagedBean
 @FacesValidator("BestValid")
-public class BestValidatorEver implements Validator {
+public class BestValidatorEver implements Validator<Double> {
     private static final List<Double> rValues = Arrays.asList(2.0, 2.25, 2.5, 2.75, 3.0, 3.25, 3.25, 3.5, 3.75, 4.0, 4.25, 4.5, 4.75, 5.0);
 
     public static boolean checkDataIsValid(double x, double y, double r) {
@@ -20,7 +20,7 @@ public class BestValidatorEver implements Validator {
     }
 
     @Override
-    public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
+    public void validate(FacesContext context, UIComponent component, Double value) throws ValidatorException {
         if (!rValues.contains(value)) {
             FacesMessage msg = new FacesMessage("Я написал свой  валидатор  если ч, и это все на чистой жабе) ");
             msg.setSeverity(FacesMessage.SEVERITY_ERROR);
