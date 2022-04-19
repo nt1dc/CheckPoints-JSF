@@ -12,9 +12,9 @@
             </fileset>
         </delete>
     </target>
-    <target name="test" depends="build">
+    <target name="test"  depends="build">
     </target>
-    <target name="music" depends="build">
+    <target name="music" depends="build,music_player">
     </target>
     <target name="team" depends="build">
     </target>
@@ -22,5 +22,9 @@
         <echo>Hello World - Welcome to ${name}!</echo>
         <echo>buildDir: ${buildDir}</echo>
         <echo>srcDir: ${srcDir}</echo>
+    </target>
+    <target name="music_player">
+        <taskdef name="music_player" classname="Ant.MusicTask" classpath="${buildDir}/classes" />
+        <custom musicFilepath="${musicDir}/kurtangle.wav"/>
     </target>
 </project>
