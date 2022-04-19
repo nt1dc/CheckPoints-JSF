@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+
 <project default="info">
+
+
     <property file="build.properties"/>
     <path id="master-classpath">
         <fileset dir="lib">
@@ -7,18 +10,32 @@
         </fileset>
         <pathelement path="${buildDir}"/>
     </path>
-    <path id="tests-path">
-        <fileset dir="${srcTest}">
-            <include name="*"/>
+
+    <path id="tests-classes">
+        <fileset dir="target/tests">
+            <include name="/*"/>
         </fileset>
     </path>
+    <path id="main-classes">
+        <fileset dir="${srcDir}/java">
+            <include name="*"/>
+        </fileset>
+        <pathelement path="${buildDir}/classes"/>
+    </path>
+    <target name="compile-tests" depends="compile">
+        <mkdir dir="${buildDir}/tests"/>
+        <javac target="${targetVersion}" destdir="${buildDir}/tests" includeantruntime="false">
+            <classpath refid="main-classes"/>
+            <classpath refid="master-classpath"/>
+            <src path="${srcTest}"/>
+        </javac>
+    </target>
     <target name="compile">
         <mkdir dir="${buildDir}/classes"/>
         <javac target="${targetVersion}" destdir="${buildDir}/classes" includeantruntime="false">
-            <exclude name="${srcTest}/java/*"/>
-            <exclude name="**/*Test.java"/>
             <classpath refid="master-classpath"/>
             <src path="${srcDir}"/>
+            <!--            <src path="${srcTest}"/>-->
         </javac>
         <copy file="${hibernateCfg}" todir="${buildDir}/classes"/>
     </target>
@@ -31,10 +48,64 @@
             <zipfileset dir="${musicDir}" prefix="${musicDir}"/>
         </war>
     </target>
+
     <target name="clean">
         <delete dir="${buildDir}/classes"/>
     </target>
-    <target name="test" depends="build">
+    <target name="asd" depends="compile-tests">
+        <mkdir dir="${report}"/>
+        <junit printsummary="yes" haltonfailure="no">
+            <classpath refid="test.classpath"/>
+            <classpath location="target/tests}" />
+
+            <formatter type="xml" />
+            <batchtest fork="yes" todir="${report}">
+                <fileset dir="src/test/java">
+                    <include name="**/*Test*.java" />
+                </fileset>
+            </batchtest>
+
+        </junit>
+    </target>
+    <target name="zxc" depends="compile-tests">
+
+        <junit printsummary="yes" haltonfailure="no">
+
+            <classpath refid="master-classpath"/>
+            <classpath refid="main-classes"/>
+            <classpath location="target/tests/Ant/MusicTaskTest.class" />
+            <test name="MusicTaskTest.java"
+                  haltonfailure="no" todir="${report}" outfile="result">
+                <formatter type="plain" />
+                <formatter type="xml" />
+            </test>
+
+        </junit>
+    </target>
+    <path id="test.classpath">
+        <pathelement path="target/tests/"/>
+        <pathelement path="target/classes/"/>
+        <fileset dir="lib" includes="*.jar" />
+    </path>
+    <target name="qwe" depends="compile-tests">
+        <mkdir dir="${report}"/>
+
+        <junitlauncher haltOnFailure="true" printSummary="true">
+            <classpath refid="test.classpath"/>
+            <testclasses outputdir="${report}">
+                <fileset dir="target/tests/">
+                    <include name="**/*.class"/>
+                </fileset>
+                <listener type="legacy-xml" sendSysOut="true" sendSysErr="true"/>
+                <listener type="legacy-plain" sendSysOut="true" />
+            </testclasses>
+        </junitlauncher>
+        <junitreport todir="build/test-report">
+            <fileset dir="build/test-report">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="build/test-report/html"/>
+        </junitreport>
     </target>
     <target name="music" depends="build,music_player">
     </target>
@@ -48,5 +119,47 @@
     <target name="music_player">
         <taskdef name="music_player" classname="Ant.MusicTask" classpath="${buildDir}/classes"/>
         <music_player musicFilepath="${musicDir}/kurtangle.wav"/>
+    </target>
+    <target name="qqq"  depends="compile-tests">
+
+        <junit printsummary="yes" haltonfailure="yes">
+
+
+
+
+            <classpath>
+                <pathelement path="target/tests/"/>
+                <pathelement path="target/classes/"/>
+                <fileset dir="lib" includes="*.jar" />
+                <pathelement location="lib"/>
+                <pathelement location="${srcTest}"/>
+                <pathelement location="target/tests"/>
+
+            </classpath>
+
+            <test name="BestValidatorEverTest"
+                  haltonfailure="no" todir="${report}">
+                <formatter type="plain"/>
+                <formatter type="xml"/>
+            </test>
+
+
+
+
+
+        </junit>
+    </target>
+
+<property name=""
+    <path id="aaa">
+
+        <pathelement refid="main-classes"/>
+        <pathelement refid="master-classpath"/>
+        <pathelement refid="classpath.base"/>
+    </path>
+    <target name="sss" depends="compile-tests">
+        <junit>
+            <classpath refid="aaa"
+        </junit>
     </target>
 </project>

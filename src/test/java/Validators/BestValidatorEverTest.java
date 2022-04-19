@@ -2,7 +2,6 @@ package Validators;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestFactory;
@@ -12,7 +11,8 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static Validators.BestValidatorEver.checkDataIsValid;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class BestValidatorEverTest {
     @Test

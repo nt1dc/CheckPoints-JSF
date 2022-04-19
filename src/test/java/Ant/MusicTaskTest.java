@@ -1,10 +1,9 @@
 package Ant;
 
+import lombok.Data;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
-
-class MusicTaskTest {
+@Data
+public class MusicTaskTest {
 
     @Test
     void playSound() {
