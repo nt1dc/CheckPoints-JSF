@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <project default="info" name="CheckPoints-JSF">
+    <target name="music" depends="build">
+    </target>
+    <target name="build" depends="clean,compile">
+    </target>
+    <target name="clean" >
+    </target>
+    <target name="compile" >
+    </target>
     <target name="info">
         <echo>Hello World - Welcome to Apache Ant!</echo>
     </target>
