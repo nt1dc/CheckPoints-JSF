@@ -22,13 +22,17 @@
         </javac>
     </target>
     <target name="build" depends="clean,compile">
+        <war destfile="${buildDir}/${name}.war" webxml="${webXml}">
+            <fileset dir="${srcDir}/resources"/>
+            <fileset dir="${srcDir}/webapp"/>
+            <classes dir="${buildDir}/classes"/>
+            <lib dir="lib"/>
+            <zipfileset dir="${musicDir}" prefix="${musicDir}"/>
+
+        </war>
     </target>
     <target name="clean">
-        <delete>
-            <fileset dir="${buildDir}">
-                <include name="**/*.class"/>
-            </fileset>
-        </delete>
+        <delete dir="${buildDir}/classes"/>
     </target>
     <target name="test" depends="build">
     </target>
