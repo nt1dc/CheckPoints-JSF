@@ -2,7 +2,6 @@ package Validators;
 
 import javax.annotation.ManagedBean;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ApplicationScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.FacesValidator;
@@ -12,7 +11,6 @@ import java.util.Arrays;
 import java.util.List;
 
 @ManagedBean
-@ApplicationScoped
 @FacesValidator("BestValid")
 public class BestValidatorEver implements Validator {
     private static final List<Double> rValues = Arrays.asList(2.0, 2.25, 2.5, 2.75, 3.0, 3.25, 3.25, 3.5, 3.75, 4.0, 4.25, 4.5, 4.75, 5.0);

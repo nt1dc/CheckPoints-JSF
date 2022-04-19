@@ -26,10 +26,6 @@ public class Result implements Serializable {
     public boolean resultStatus;
     @Transient
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
-//    @Transient
-//    private String svgX;
-//    @Transient
-//    private String svgY;
 
 
     public Result() {

@@ -10,8 +10,7 @@ import java.io.Serializable;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-//@ManagedBean(name = "resultsBean", eager = true)
-//@ApplicationScoped
+
 @Data
 public class ResultsBean implements Serializable {
     private Deque<Result> results;
