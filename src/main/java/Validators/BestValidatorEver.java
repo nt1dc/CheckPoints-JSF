@@ -22,7 +22,7 @@ public class BestValidatorEver implements Validator<Double> {
     @Override
     public void validate(FacesContext context, UIComponent component, Double value) throws ValidatorException {
         if (!rValues.contains(value)) {
-            FacesMessage msg = new FacesMessage("Я написал свой  валидатор  если ч, и это все на чистой жабе) ");
+            FacesMessage msg = new FacesMessage("zxc) ");
             msg.setSeverity(FacesMessage.SEVERITY_ERROR);
             throw new ValidatorException(msg);
         }
