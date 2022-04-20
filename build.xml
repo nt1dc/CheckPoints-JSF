@@ -30,7 +30,7 @@
             <src path="${srcTest}"/>
         </javac>
     </target>
-    <target name="compile">
+    <target name="compile" depends="clean">
         <mkdir dir="${buildDir}/classes"/>
         <javac target="${targetVersion}" destdir="${buildDir}/classes" includeantruntime="false">
             <classpath refid="master-classpath"/>
@@ -50,7 +50,7 @@
     </target>
 
     <target name="clean">
-        <delete dir="${buildDir}/classes"/>
+        <delete dir="${buildDir}"/>
     </target>
     <target name="asd" depends="compile-tests">
         <mkdir dir="${report}"/>
@@ -150,16 +150,37 @@
         </junit>
     </target>
 
-<property name=""
-    <path id="aaa">
+    <path id="classpath.test">
+<!--        <fileset dir="src/main/java">-->
+<!--            <include name="*.java"/>-->
+<!--        </fileset>-->
+<!--        <fileset dir="target/classes">-->
+<!--            <include  name="**/*.class"/>-->
+<!--        </fileset>-->
+        <fileset dir="lib">
+            <include name="*.jar"/>
+        </fileset>
 
-        <pathelement refid="main-classes"/>
-        <pathelement refid="master-classpath"/>
-        <pathelement refid="classpath.base"/>
     </path>
-    <target name="sss" depends="compile-tests">
-        <junit>
-            <classpath refid="aaa"
+    <target name="test1" depends="compile-tests">
+        <junit printsummary="on" haltonfailure="yes" fork="true">
+            <classpath>
+                <pathelement location="target/classes/OpportunityToBeInLive" />
+                <path refid="classpath.test"/>
+                <pathelement location="target/tests"/>
+                <pathelement location="target/tests/Validators"/>
+            </classpath>
+            <formatter type="brief" usefile="false" />
+            <batchtest>
+                <fileset dir="src/test/java" includes="**/*Test.java" />
+            </batchtest>
         </junit>
+    </target>
+    <target name="song">
+        <sound>
+            <success source="sounds/kurtangle.wav"/>
+            <fail source="sounds/kurtangle.wav" loops="2"/>
+        </sound>
+        <property name="fun.done" value="true"/>
     </target>
 </project>
