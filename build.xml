@@ -10,17 +10,18 @@
         </fileset>
         <pathelement path="${buildDir}"/>
     </path>
-
-    <path id="tests-classes">
-        <fileset dir="target/tests">
-            <include name="/*"/>
-        </fileset>
-    </path>
     <path id="main-classes">
         <fileset dir="${srcDir}/java">
             <include name="*"/>
         </fileset>
         <pathelement path="${buildDir}/classes"/>
+    </path>
+    <path id="classpath.test">
+        <pathelement path="target/classes"/>
+        <pathelement path="target/tests"/>
+        <fileset dir="lib">
+            <include name="*.jar"/>
+        </fileset>
     </path>
     <target name="compile-tests" depends="compile">
         <mkdir dir="${buildDir}/tests"/>
@@ -52,61 +53,6 @@
     <target name="clean">
         <delete dir="${buildDir}"/>
     </target>
-    <target name="asd" depends="compile-tests">
-        <mkdir dir="${report}"/>
-        <junit printsummary="yes" haltonfailure="no">
-            <classpath refid="test.classpath"/>
-            <classpath location="target/tests}" />
-
-            <formatter type="xml" />
-            <batchtest fork="yes" todir="${report}">
-                <fileset dir="src/test/java">
-                    <include name="**/*Test*.java" />
-                </fileset>
-            </batchtest>
-
-        </junit>
-    </target>
-    <target name="zxc" depends="compile-tests">
-
-        <junit printsummary="yes" haltonfailure="no">
-
-            <classpath refid="master-classpath"/>
-            <classpath refid="main-classes"/>
-            <classpath location="target/tests/Ant/MusicTaskTest.class" />
-            <test name="MusicTaskTest.java"
-                  haltonfailure="no" todir="${report}" outfile="result">
-                <formatter type="plain" />
-                <formatter type="xml" />
-            </test>
-
-        </junit>
-    </target>
-    <path id="test.classpath">
-        <pathelement path="target/tests/"/>
-        <pathelement path="target/classes/"/>
-        <fileset dir="lib" includes="*.jar" />
-    </path>
-    <target name="qwe" depends="compile-tests">
-        <mkdir dir="${report}"/>
-
-        <junitlauncher haltOnFailure="true" printSummary="true">
-            <classpath refid="test.classpath"/>
-            <testclasses outputdir="${report}">
-                <fileset dir="target/tests/">
-                    <include name="**/*.class"/>
-                </fileset>
-                <listener type="legacy-xml" sendSysOut="true" sendSysErr="true"/>
-                <listener type="legacy-plain" sendSysOut="true" />
-            </testclasses>
-        </junitlauncher>
-        <junitreport todir="build/test-report">
-            <fileset dir="build/test-report">
-                <include name="TEST-*.xml"/>
-            </fileset>
-            <report format="frames" todir="build/test-report/html"/>
-        </junitreport>
-    </target>
     <target name="music" depends="build,music_player">
     </target>
     <target name="team" depends="build">
@@ -116,65 +62,25 @@
         <echo>buildDir: ${buildDir}</echo>
         <echo>srcDir: ${srcDir}</echo>
     </target>
+
     <target name="music_player">
         <taskdef name="music_player" classname="Ant.MusicTask" classpath="${buildDir}/classes"/>
         <music_player musicFilepath="${musicDir}/kurtangle.wav"/>
     </target>
-    <target name="qqq"  depends="compile-tests">
 
-        <junit printsummary="yes" haltonfailure="yes">
-
-
-
-
-            <classpath>
-                <pathelement path="target/tests/"/>
-                <pathelement path="target/classes/"/>
-                <fileset dir="lib" includes="*.jar" />
-                <pathelement location="lib"/>
-                <pathelement location="${srcTest}"/>
-                <pathelement location="target/tests"/>
-
-            </classpath>
-
-            <test name="BestValidatorEverTest"
-                  haltonfailure="no" todir="${report}">
-                <formatter type="plain"/>
-                <formatter type="xml"/>
-            </test>
-
-
-
-
-
-        </junit>
-    </target>
-
-    <path id="classpath.test">
-<!--        <fileset dir="src/main/java">-->
-<!--            <include name="*.java"/>-->
-<!--        </fileset>-->
-<!--        <fileset dir="target/classes">-->
-<!--            <include  name="**/*.class"/>-->
-<!--        </fileset>-->
-        <fileset dir="lib">
-            <include name="*.jar"/>
-        </fileset>
-
-    </path>
-    <target name="test1" depends="compile-tests">
+    <target name="test" depends="compile-tests">
         <junit printsummary="on" haltonfailure="yes" fork="true">
-            <classpath>
-                <pathelement location="target/classes/OpportunityToBeInLive" />
-                <path refid="classpath.test"/>
-                <pathelement location="target/tests"/>
-                <pathelement location="target/tests/Validators"/>
+            <classpath refid="classpath.test">
             </classpath>
-            <formatter type="brief" usefile="false" />
-            <batchtest>
-                <fileset dir="src/test/java" includes="**/*Test.java" />
+            <formatter type="brief" usefile="false"/>
+            <batchtest todir="reports">
+                <fileset dir="src/test/java" includes="**/*Test.java"/>
             </batchtest>
+
         </junit>
+
+        <mkdir dir="${report}"/>
+
     </target>
     <target name="song">
         <sound>
