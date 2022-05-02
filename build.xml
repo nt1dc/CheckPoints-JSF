@@ -55,7 +55,12 @@
     </target>
     <target name="music" depends="build,music_player">
     </target>
-    <target name="team" depends="build">
+    <target name="team" >
+
+        <exec executable="git" dir="C:\Program Files\Git\cmd">
+            <arg value="rev-parse"/>
+            <arg value="HEAD"/>
+        </exec>
     </target>
     <target name="info">
         <echo>Hello World - Welcome to ${name}!</echo>
@@ -63,10 +68,7 @@
         <echo>srcDir: ${srcDir}</echo>
     </target>
 
-    <target name="music_player">
-        <taskdef name="music_player" classname="Ant.MusicTask" classpath="${buildDir}/classes"/>
-        <music_player musicFilepath="${musicDir}/kurtangle.wav"/>
-    </target>
+
 
     <target name="test" depends="compile-tests">
         <junit printsummary="on" haltonfailure="yes" fork="true">
@@ -89,4 +91,5 @@
         </sound>
         <property name="fun.done" value="true"/>
     </target>
+
 </project>

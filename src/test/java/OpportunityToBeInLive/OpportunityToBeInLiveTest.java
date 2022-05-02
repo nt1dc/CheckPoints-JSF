@@ -1,13 +1,23 @@
-package Validators;
+package OpportunityToBeInLive;
 
-import OpportunityToBeInLive.OpportunityToBeInLive;
+
+import Validators.BestValidatorEver;
 import org.junit.Assert;
 import org.junit.Test;
+import org.mockito.MockedStatic;
+import org.mockito.Mockito;
 
 
 public class OpportunityToBeInLiveTest {
     OpportunityToBeInLive opportunityToBeInLive = new OpportunityToBeInLive();
 
+    @Test
+    public void zxc() {
+        System.out.println("zxc");
+        MockedStatic<BestValidatorEver> utilities =Mockito.mockStatic(BestValidatorEver.class);
+//        boolean res = ;
+        Assert.assertFalse(BestValidatorEver.checkDataIsValid(0.0, 0.0, 2.0));
+    }
 
     @Test
     public void please() {
