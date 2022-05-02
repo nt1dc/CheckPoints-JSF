@@ -67,20 +67,19 @@
         <copy file="${buildDir}/${name}.war" todir="${teamDir}/1"/>
         <exec executable="git">
             <arg value="checkout"/>
-            <arg value="HEAD~2"/>
+            <arg value="HEAD~1"/>
         </exec>
         <antcall target="build"/>
         <copy file="${buildDir}/${name}.war" todir="${teamDir}/2"/>
         <exec executable="git">
             <arg value="checkout"/>
-            <arg value="HEAD~3"/>
+            <arg value="HEAD~1"/>
         </exec>
         <antcall target="build"/>
         <copy file="${buildDir}/${name}.war" todir="${teamDir}/3"/>
         <exec executable="git">
-            <arg value="reset"/>
-            <arg value="--hard"/>
-            <arg value="HEAD"/>
+            <arg value="checkout"/>
+            <arg value="master"/>
         </exec>
         <exec executable="zip">
             <arg value="-r"/>
