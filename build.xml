@@ -53,14 +53,24 @@
     <target name="clean">
         <delete dir="${buildDir}"/>
     </target>
-    <target name="music" depends="build,music_player">
+    <target name="music" depends="build,song">
     </target>
     <target name="team" >
-
-        <exec executable="git" dir="C:\Program Files\Git\cmd">
-            <arg value="rev-parse"/>
-            <arg value="HEAD"/>
+        <exec executable="git">
+            <arg value="reset"/>
+            <arg value="HEAD~1"/>
         </exec>
+        <antcall target="build"/>
+        <exec executable="git">
+            <arg value="reset"/>
+            <arg value="HEAD~2"/>
+        </exec>
+        <antcall target="build"/>
+        <exec executable="git">
+            <arg value="reset"/>
+            <arg value="HEAD~3"/>
+        </exec>
+        <antcall target="build"/>
     </target>
     <target name="info">
         <echo>Hello World - Welcome to ${name}!</echo>
