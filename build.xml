@@ -60,20 +60,20 @@
         <mkdir dir="${teamDir}/2"/>
         <mkdir dir="${teamDir}/3"/>
         <exec executable="git">
-            <arg value="reset"/>
+            <arg value="checkout"/>
             <arg value="HEAD~1"/>
         </exec>
         <antcall target="build"/>
         <copy file="${buildDir}/${name}.war" todir="${teamDir}/1"/>
         <exec executable="git">
-            <arg value="reset"/>
-            <arg value="HEAD~1"/>
+            <arg value="checkout"/>
+            <arg value="HEAD~2"/>
         </exec>
         <antcall target="build"/>
         <copy file="${buildDir}/${name}.war" todir="${teamDir}/2"/>
         <exec executable="git">
-            <arg value="reset"/>
-            <arg value="HEAD~1"/>
+            <arg value="checkout"/>
+            <arg value="HEAD~3"/>
         </exec>
         <antcall target="build"/>
         <copy file="${buildDir}/${name}.war" todir="${teamDir}/3"/>
