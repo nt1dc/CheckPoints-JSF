@@ -56,21 +56,37 @@
     <target name="music" depends="build,song">
     </target>
     <target name="team" >
+        <mkdir dir="${teamDir}/1"/>
+        <mkdir dir="${teamDir}/2"/>
+        <mkdir dir="${teamDir}/3"/>
         <exec executable="git">
             <arg value="reset"/>
             <arg value="HEAD~1"/>
         </exec>
         <antcall target="build"/>
+        <copy file="${buildDir}/${name}.war" todir="${teamDir}/1"/>
         <exec executable="git">
             <arg value="reset"/>
             <arg value="HEAD~2"/>
         </exec>
         <antcall target="build"/>
+        <copy file="${buildDir}/${name}.war" todir="${teamDir}/2"/>
         <exec executable="git">
             <arg value="reset"/>
             <arg value="HEAD~3"/>
         </exec>
         <antcall target="build"/>
+        <copy file="${buildDir}/${name}.war" todir="${teamDir}/3"/>
+        <exec executable="git">
+            <arg value="reset"/>
+            <arg value="--hard"/>
+            <arg value="HEAD"/>
+        </exec>
+        <exec executable="zip">
+            <arg value="-r"/>
+            <arg value="${teamZip}"/>
+            <arg value="${teamDir}"/>
+        </exec>
     </target>
     <target name="info">
         <echo>Hello World - Welcome to ${name}!</echo>
