@@ -130,7 +130,7 @@ public class Result implements Serializable {
 
 
     public String getColor(double lastR) {
-        if (Utils.atArea(x,y,lastR)) {
+        if (Utils.atArea(x, y, lastR)) {
             return "green";
         } else return "red";
     }

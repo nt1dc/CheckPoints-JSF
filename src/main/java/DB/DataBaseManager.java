@@ -31,9 +31,6 @@ public abstract class DataBaseManager {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         session.beginTransaction();
         Query query = session.createQuery("DELETE FROM Result");
-//        for (Object result : resultList) {
-//            session.delete(result);
-//        }
         query.executeUpdate();
         session.getTransaction().commit();
         session.clear();

@@ -55,7 +55,7 @@
     </target>
     <target name="music" depends="build,song">
     </target>
-    <target name="team" >
+    <target name="team">
         <mkdir dir="${teamDir}/1"/>
         <mkdir dir="${teamDir}/2"/>
         <mkdir dir="${teamDir}/3"/>
@@ -81,8 +81,8 @@
             <arg value="checkout"/>
             <arg value="master"/>
         </exec>
-        <exec executable="zip">
-            <arg value="-r"/>
+        <exec executable="jar">
+            <arg value="-cfM"/>
             <arg value="${teamZip}"/>
             <arg value="${teamDir}"/>
         </exec>
@@ -94,9 +94,10 @@
     </target>
 
 
-
     <target name="test" depends="compile-tests">
-        <junit printsummary="on" haltonfailure="yes" fork="true">
+        <!--        <junit printsummary="on" haltonfailure="yes" fork="true">-->
+
+        <junit printsummary="on"  fork="true">
             <classpath refid="classpath.test">
             </classpath>
             <formatter type="brief" usefile="false"/>
