@@ -2,7 +2,6 @@
 
 <project default="info">
 
-
     <property file="build.properties"/>
     <path id="master-classpath">
         <fileset dir="lib">
@@ -23,6 +22,8 @@
             <include name="*.jar"/>
         </fileset>
     </path>
+
+
     <target name="compile-tests" depends="compile">
         <mkdir dir="${buildDir}/tests"/>
         <javac target="${targetVersion}" destdir="${buildDir}/tests" includeantruntime="false">
@@ -49,11 +50,8 @@
             <zipfileset dir="${musicDir}" prefix="${musicDir}"/>
         </war>
     </target>
-
     <target name="clean">
         <delete dir="${buildDir}"/>
-    </target>
-    <target name="music" depends="build,song">
     </target>
     <target name="team">
         <mkdir dir="${teamDir}/1"/>
@@ -91,26 +89,32 @@
         <echo>Hello World - Welcome to ${name}!</echo>
         <echo>buildDir: ${buildDir}</echo>
         <echo>srcDir: ${srcDir}</echo>
+
     </target>
-
-
     <target name="test" depends="compile-tests">
         <!--        <junit printsummary="on" haltonfailure="yes" fork="true">-->
-
-        <junit printsummary="on"  fork="true">
+        <mkdir dir="${report}"/>
+        <junit printsummary="on" fork="true">
             <classpath refid="classpath.test">
             </classpath>
             <formatter type="brief" usefile="false"/>
             <batchtest todir="reports">
                 <fileset dir="src/test/java" includes="**/*Test.java"/>
             </batchtest>
-
+            <formatter type="xml"/>
+            <!--            <test name="DataTest" todir="${report}"/>-->
         </junit>
+        <junitreport todir="${report}">
+            <fileset dir="${report}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="noframes" todir="${report}"/>
+        </junitreport>
 
         <mkdir dir="${report}"/>
 
     </target>
-    <target name="song">
+    <target name="music" depends="build">
         <sound>
             <success source="sounds/kurtangle.wav"/>
             <fail source="sounds/kurtangle.wav" loops="2"/>

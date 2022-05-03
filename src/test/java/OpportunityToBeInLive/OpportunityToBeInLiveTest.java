@@ -8,8 +8,6 @@ import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
-import org.mockito.MockedStatic;
-import org.mockito.Mockito;
 
 import java.util.Arrays;
 import java.util.List;
@@ -22,21 +20,25 @@ public class OpportunityToBeInLiveTest {
     @Test
     public void zxc() {
         System.out.println("zxc");
-        MockedStatic<BestValidatorEver> utilities = Mockito.mockStatic(BestValidatorEver.class);
-//        boolean res = ;
-        Assertions.assertFalse(BestValidatorEver.checkDataIsValid(0.0, 0.0, 2.0));
+        boolean expected = true;
+//        MockedStatic<BestValidatorEver> utilities = Mockito.mockStatic(BestValidatorEver.class);
+        boolean res = BestValidatorEver.checkDataIsValid(0.0, 0.0, 2.0);
+        Assertions.assertEquals(expected, res);
     }
 
     @Test
     public void please() {
+        boolean expected = true;
         boolean res = opportunityToBeInLive.checkDataIsValid(1.0, 2.0, 3.0);
-        Assertions.assertTrue(res);
+        Assertions.assertEquals(expected, res);
     }
 
 
     @Test
     public void checkDataIsValidExample() {
-        Assertions.assertTrue(opportunityToBeInLive.checkDataIsValid(2.0, 2.0, 3.0));
+        boolean expected = true;
+        boolean res =opportunityToBeInLive.checkDataIsValid(2.0, 2.0, 3.0);
+        Assertions.assertEquals(expected,res);
     }
 
     @TestFactory
