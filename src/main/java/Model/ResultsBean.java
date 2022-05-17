@@ -20,6 +20,8 @@ public class ResultsBean implements Serializable {
     private double r = 2;
     private String color = "black";
     private Deque<Result> resultDeque;
+    private PointCounterBean pointCounterBean;
+    private AvgClickTimeBean avgClickTimeBean;
 
 
     public double getLastR() {
@@ -45,13 +47,10 @@ public class ResultsBean implements Serializable {
         resultDeque = DataBaseManager.loadData();
     }
 
-//
-//    public void reload(){
-//        resultDeque = new ArrayDeque<>();
-//        resultDeque=DataBaseManager.loadData();
-//    }
 
     public void add() {
+        pointCounterBean.incrementCounter();
+        avgClickTimeBean.calcAvgTime();
         try {
 //            reload();
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();

@@ -12,7 +12,6 @@ function sub(event) {
         document.getElementById("formID:x-error").innerText="bad value"
         document.getElementById("formID:y-error").innerText="bad value"
     }
-    // alert("2")
 }
 
 

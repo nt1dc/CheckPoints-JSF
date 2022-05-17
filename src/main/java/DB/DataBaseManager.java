@@ -23,10 +23,6 @@ public abstract class DataBaseManager {
         session.close();
     }
 
-    public synchronized Deque<Result> getResultList() {
-        return resultList;
-    }
-
     public synchronized static void clearData() {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         session.beginTransaction();

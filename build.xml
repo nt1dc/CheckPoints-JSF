@@ -24,9 +24,11 @@
     </path>
 
 
-    <target name="compile-tests" depends="compile">
+    <target name="compile-tests"  depends="compile">
         <mkdir dir="${buildDir}/tests"/>
-        <javac target="${targetVersion}" destdir="${buildDir}/tests" includeantruntime="false">
+        <javac source="1.8" target="1.8"
+               destdir="${buildDir}/tests"
+               includeantruntime="false">
             <classpath refid="main-classes"/>
             <classpath refid="master-classpath"/>
             <src path="${srcTest}"/>
@@ -34,7 +36,9 @@
     </target>
     <target name="compile" depends="clean">
         <mkdir dir="${buildDir}/classes"/>
-        <javac target="${targetVersion}" destdir="${buildDir}/classes" includeantruntime="false">
+        <javac source="1.8" target="1.8"
+               destdir="${buildDir}/classes"
+               includeantruntime="false">
             <classpath refid="master-classpath"/>
             <src path="${srcDir}"/>
             <!--            <src path="${srcTest}"/>-->

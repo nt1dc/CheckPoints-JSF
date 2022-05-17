@@ -1,6 +1,8 @@
 package Model;
 
 import Util.Utils;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -10,6 +12,8 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "\"Results\"")
+@Data
+@NoArgsConstructor
 public class Result implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,10 +31,6 @@ public class Result implements Serializable {
     @Transient
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
 
-
-    public Result() {
-    }
-
     public Result(double x, double y, double r, long date) {
         this.x = x;
         this.y = y;
@@ -43,89 +43,6 @@ public class Result implements Serializable {
 
     public String getSimpleCurrentTime() {
         return simpleDateFormat.format(currentTime);
-    }
-
-
-    public double getX() {
-        return x;
-    }
-
-    public void setX(double x) {
-        this.x = x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
-    public void setY(double y) {
-        this.y = y;
-    }
-
-    public double getR() {
-        return r;
-    }
-
-    public void setR(double r) {
-        this.r = r;
-    }
-
-    public long getCurrentTime() {
-        return currentTime;
-    }
-
-    public void setCurrentTime(long currentTime) {
-        this.currentTime = currentTime;
-    }
-
-    public long getResultTime() {
-        return resultTime;
-    }
-
-    public void setResultTime(long resultTime) {
-        this.resultTime = resultTime;
-    }
-
-    public boolean isResultStatus() {
-        return resultStatus;
-    }
-
-    public void setResultStatus(boolean resultStatus) {
-        this.resultStatus = resultStatus;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Result result = (Result) o;
-        return Double.compare(result.x, x) == 0 && Double.compare(result.y, y) == 0 && Double.compare(result.r, r) == 0 && currentTime == result.currentTime && resultTime == result.resultTime && resultStatus == result.resultStatus && Objects.equals(id, result.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, x, y, r, currentTime, resultTime, resultStatus);
-    }
-
-    @Override
-    public String toString() {
-        return "Result{" +
-                "id=" + id +
-                ", x=" + x +
-                ", y=" + y +
-                ", r=" + r +
-                ", currentTime=" + currentTime +
-                ", resultTime=" + resultTime +
-                ", resultStatus=" + resultStatus +
-                '}';
     }
 
 
